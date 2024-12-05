@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <h1>Welcome to My Simple React Webpage</h1>
         <p>This is a simple webpage created using React.</p>
-        <p>This is created for CI/CD test</p>
+        <p>This is created for CI/CD test.</p>
       </header>
     </div>
   );
