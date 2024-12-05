@@ -24,9 +24,11 @@ jobs:
     - name: Build the project
       run: npm run build
 
-    - name: Dockerize the application
+    - name: Dockerize and push the application
+      env:  # Ensure secrets are passed to the job
+        DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
       run: |
-        docker build -t your-docker-username/simple-webpage .
-        echo ${{ secrets.DOCKER_HUB_PASSWORD }} | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
-        docker push your-docker-username/simple-webpage
-
+        docker build -t $DOCKER_USERNAME/simple-webpage .
+        echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+        docker push $DOCKER_USERNAME/simple-webpage
